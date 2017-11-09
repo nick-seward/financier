@@ -4,7 +4,7 @@
   "version": "1.5.1",
   "releaseDate": "2017-02-01",
   "description": "Straightforward budgeting",
-  "main": "./api/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
