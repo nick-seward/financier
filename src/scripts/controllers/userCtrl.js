@@ -92,9 +92,9 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
     this.getSource();
   }
 
-  this.userDb = null;
+  this.userDb = 'financierdb';
 
-  const getSession = () => {
+   const getSession = () => {
     return User.session()
     .then(s => {
       if (s.userCtx && s.userCtx.name) {
@@ -129,8 +129,11 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
     })
     .catch(() => {
       this.loadingFailed = true;
+      this.email = "me@me.com";
+      db.sync.start('financierdb', true);
     });
   };
+
 
   getSession();
 

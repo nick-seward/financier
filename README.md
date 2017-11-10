@@ -75,15 +75,24 @@ In the examples below, replace the uuid with a new one if you want multiple user
 
 Create user:
 ```
-curl -X PUT http://admin:mypassword@localhost:5984/_users/org.couchdb.user:calebt \
+curl -X PUT http://admin:mypassword@localhost:5984/_users/org.couchdb.user:calebt@example.org \
      -H "Accept: application/json" \
      -H "Content-Type: application/json" \
-     -d '{"name": "calebt", "password": "mypass", "roles": ["me@example.org", "verified", "userdb-b1284cd5a340420a87858bc58da1c252", "exp-4102444799"], "type": "user"}'
+     -d '{"name": "calebt@example.org", "password": "mypass", "roles": ["calebt@example.org", "verified", "userdb-b1284cd5a340420a87858bc58da1c252", "exp-4102444799"], "type": "user"}'
 ```
 
 Create database:
 ```
 curl -X PUT http://admin:mypassword@127.0.0.1:5984/userdb-b1284cd5a340420a87858bc58da1c252
 ```
+
+Make user an admin of this db:
+```
+curl -X PUT http://admin:mypassword@localhost:5984/userdb-b1284cd5a340420a87858bc58da1c252/_security \
+     -H "Content-Type: application/json" \
+     -d '{"admins": { "names": ["calebt@example.org"], "roles": [] }, "members": { "names": [], "roles": [] } }'
+```
+
+
 
 In db.js, change https:// to http
