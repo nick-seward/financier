@@ -108,12 +108,15 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
           }
         }
 
+        /*
         for (let i = 0; i < s.userCtx.roles.length; i++) {
           if (s.userCtx.roles[i].indexOf('exp-') === 0) {
             isValidSub = moment().unix() < +s.userCtx.roles[i].slice(4);
           }
         }
+        */
 
+        isValidSub = true;
         db.sync.start(this.userDb, isValidSub);
 
         this.isFree = false;

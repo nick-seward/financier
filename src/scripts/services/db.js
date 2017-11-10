@@ -48,7 +48,7 @@ angular.module('financier').provider('db', function() {
       const host = window.location.host;
 
       if (isValidSub) {
-        sync = db.sync(`https://${host}/db/${dbName}`, options)
+        sync = db.sync(`http://${host}/db/${dbName}`, options)
         .on('paused', function () {
           $rootScope.$apply(() => {
             // user went offline
@@ -56,7 +56,7 @@ angular.module('financier').provider('db', function() {
           });
         });
       } else {
-        sync = PouchDB.replicate(`https://${host}/db/${dbName}`, db, options)
+        sync = PouchDB.replicate(`http://${host}/db/${dbName}`, db, options)
         .on('paused', function () {
           $rootScope.$apply(() => {
             // user went offline
