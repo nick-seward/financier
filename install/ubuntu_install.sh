@@ -25,17 +25,19 @@ node ./install/setup_couchdb.js
 # Build
 npm run build
 
+# Daemonize
+npm install pm2 -g
+pm2 startup
+pm2 start ./api/index.js
+
 ip=$(ip -f inet -o addr show eth0|cut -d\  -f 7 | cut -d/ -f 1)
 
 echo ""
 echo ""
-echo "################"
+echo "#################################################################"
 echo ""
-echo "Financier is now installed.  To start, run the following:"
-echo "node ./api"
+echo "Financier is now installed and running.  In your browser, go to:"
 echo ""
-echo "and then go to http://$ip in your browser and log in with the user account you created earlier"
+echo "http://$ip:8080"
 echo ""
-
-# Start app
-#node ./api
+echo "#################################################################"
