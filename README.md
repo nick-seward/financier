@@ -69,34 +69,6 @@ Generate with `npm run docs`.
 
 ### CouchDB setup
 
-Install CouchDB 2.1+ from http://docs.couchdb.org/en/master/install/index.html
-
 ```
-curl -X GET http://127.0.0.1:5984/_membership
+node ./install/setup_couchdb.js
 ```
-
-Should get a response like 
-```
-{"all_nodes":["couchdb@localhost"],"cluster_nodes":["couchdb@localhost"]}
-```
-
-Create system dbs
-```
-curl -X PUT http://127.0.0.1:5984/_users
-curl -X PUT http://127.0.0.1:5984/_replicator
-curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/couch_peruser/enable -d '"true"'
-curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/couch_httpd_auth/allow_persistent_cookies -d '"true"'
-curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/admins/admin -d '"myadminpassword"'
-```
-
-Now create a user
-
-Create user:
-```
-curl -X PUT http://admin:mypassword@localhost:5984/_users/org.couchdb.user:calebt@example.org \
-     -H "Accept: application/json" \
-     -H "Content-Type: application/json" \
-     -d '{"name": "calebt@example.org", "password": "mypass", "roles": ["calebt@example.org", "verified" "exp-4102444799"], "type": "user"}'
-```
-
-In db.js, change https:// to http

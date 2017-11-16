@@ -3,7 +3,7 @@
 # usermod -aG sudo financier
 
 # Install couchdb
-curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
+echo "deb https://apache.bintray.com/couchdb-deb xenial main" | sudo tee -a /etc/apt/sources.list
 sudo apt-get update && sudo apt-get install -y couchdb
 
 # Install node
