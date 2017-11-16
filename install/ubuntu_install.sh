@@ -20,3 +20,20 @@ git clone https://gitlab.com/caleb3141/financier.git
 cd financier
 npm install
 node ./install/setup_couchdb.js
+
+# Build
+npm run Build
+
+ip=$(ip -f inet -o addr show eth0|cut -d\  -f 7 | cut -d/ -f 1)
+
+echo ""
+echo ""
+echo "################"
+echo ""
+echo "Financier is now installed.  To start, run the following:"
+echo "node ./api"
+echo ""
+echo "and then go to http://$ip in your browser and log in with the user account you created earlier"
+
+# Start app
+#node ./api
