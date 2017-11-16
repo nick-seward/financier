@@ -24,13 +24,15 @@ On a clean ubunutu install, run:
 bash <(curl -s https://gitlab.com/caleb3141/financier/raw/master/install/ubuntu_install.sh)
 ```
 
+(Be sure to create a CouchDB admin password when prompted by the installer and remember it for later in the script)
+
 This will:
 1. Install CouchDB 2.x
 1. Install node js
 1. Install git
 1. Download financier (from this repo)
 1. Configure CouchDB
-1. Start the financier web app 
+1. Start the financier web app and daemonize it.
 
 ### Develop
 
