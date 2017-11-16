@@ -2,19 +2,7 @@ var rl = require('readline-sync');
 var request = require('sync-request');
 var conv = require('binstring');
 
-var baseUrl;
-while (true) {
-	console.log('Please your CouchDB admin password:');
-	var adminPassword = rl.question('Please enter your CouchDB admin password: ');
-
-	baseUrl = `http://admin:${adminPassword}@127.0.0.1:5984`;	
-	var testResponse = request('GET', `${baseUrl}/_membership`);
-	if (testResponse.statusCode == 200) {
-		break;
-	} else {
-		console.log("Invalid password!")
-	}
-}
+var baseUrl = 'http://@127.0.0.1:5984';
 
 // Create system dbs
 console.log('Creating system dbs...');
@@ -58,10 +46,8 @@ var userBody = {
 
 console.log(request('PUT', `${baseUrl}/_users/org.couchdb.user:${data.userEmail}`, { json: userBody }).getBody('utf8'));
 
-/*
 console.log('Please enter an admin password for the entire CouchDB instance (this locks down the couchdb instance):');
 data.adminPassword = rl.question('admin password: ');
 
 request('PUT', `${configUrl}/admins/admin`, { json: data.adminPassword }).getBody('utf8');
 console.log('User \'admin\' created!  All API requests now require authentication.');
-*/
