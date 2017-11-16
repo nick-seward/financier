@@ -12,7 +12,7 @@
 
 > A web-based, offline-first app. Built with Angular 1 and PouchDB.
 
-NOTE: This is a fork of the main financier app written by aeharding.
+NOTE: This is a fork of the main <a href="https://gitlab.com/financier/financier">financier app</a> written by aeharding.
 
 The main differences in this repo are scripts for getting financier up and running quickly on a clean ubuntu 16.x install, and requests to /db are proxied to a local CouchDB install.
 
