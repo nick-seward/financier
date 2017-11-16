@@ -12,7 +12,25 @@
 
 > A web-based, offline-first app. Built with Angular 1 and PouchDB.
 
-[![build status](https://gitlab.com/financier/financier/badges/master/build.svg)](https://gitlab.com/financier/financier/commits/master)
+NOTE: This is a fork of the main financier app written by aeharding.
+
+The main differences in this repo are scripts for getting financier up and running quickly on a clean ubuntu 16.x install, and requests to /db are proxied to a local CouchDB install.
+
+### Ubuntu 16.x Install
+
+On a clean ubunutu install, run:
+
+```
+bash <(curl -s https://gitlab.com/caleb3141/financier/raw/master/install/ubuntu_install.sh)
+```
+
+This will:
+1. Install CouchDB 2.x
+1. Install node js
+1. Install git
+1. Download financier (from this repo)
+1. Configure CouchDB
+1. Start the financier web app 
 
 ### Develop
 

@@ -1,3 +1,7 @@
+# Recommend running this script as a user other than root.
+# adduser financier
+# usermod -aG sudo financier
+
 # Install couchdb
 curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
 sudo apt-get update && sudo apt-get install -y couchdb
