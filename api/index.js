@@ -7,7 +7,7 @@ app.use('/docs', express.static(path.join(__dirname, '../docs')));
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// app.use('/db', proxy('127.0.0.1:5984'));
+app.use('/db', proxy('127.0.0.1:5984'));
 
 // html5mode
 app.all('/*', function(req, res) {

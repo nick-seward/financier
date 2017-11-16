@@ -92,15 +92,15 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
     this.getSource();
   }
 
-  this.userDb = 'financierdb';
+  this.userDb = null;
 
-   const getSession = () => {
+  const getSession = () => {
     return User.session()
     .then(s => {
       if (s.userCtx && s.userCtx.name) {
         this.email = s.userCtx.name;
 
-        let isValidSub = false;
+        let isValidSub = true;
 
         for (let i = 0; i < s.userCtx.roles.length; i++) {
           if (s.userCtx.roles[i].indexOf('userdb-') === 0) {
@@ -116,7 +116,6 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
         }
         */
 
-        isValidSub = true;
         db.sync.start(this.userDb, isValidSub);
 
         this.isFree = false;
@@ -129,11 +128,8 @@ angular.module('financier').controller('userCtrl', function($rootScope, $scope, 
     })
     .catch(() => {
       this.loadingFailed = true;
-      this.email = "me@me.com";
-      db.sync.start('financierdb', true);
     });
   };
-
 
   getSession();
 

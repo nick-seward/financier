@@ -49,50 +49,36 @@ Local docs would be `http://localhost:8080/docs`.
 Generate with `npm run docs`.
 
 
-### CouchDB setup (osx)
+### CouchDB setup
+
+Install CouchDB 2.1+ from http://docs.couchdb.org/en/master/install/index.html
 
 ```
-brew install couchdb
-brew services start couchdb
-curl http://localhost:5984
+curl -X GET http://127.0.0.1:5984/_membership
 ```
 
-edit /usr/local/etc/couchdb/local.ini
-
+Should get a response like 
 ```
-WWW-Authenticate = Basic realm="administrator"
-require_valid_user = true
-
-[admins]
-admin = mypassword
+{"all_nodes":["couchdb@localhost"],"cluster_nodes":["couchdb@localhost"]}
 ```
 
+Create system dbs
 ```
-brew services restart couchdb
+curl -X PUT http://127.0.0.1:5984/_users
+curl -X PUT http://127.0.0.1:5984/_replicator
+curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/couch_peruser/enable -d '"true"'
+curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/couch_httpd_auth/allow_persistent_cookies -d '"true"'
+curl -X PUT http://127.0.0.1:5984/_node/couchdb@localhost/_config/admins/admin -d '"myadminpassword"'
 ```
 
-In the examples below, replace the uuid with a new one if you want multiple user databases.
+Now create a user
 
 Create user:
 ```
 curl -X PUT http://admin:mypassword@localhost:5984/_users/org.couchdb.user:calebt@example.org \
      -H "Accept: application/json" \
      -H "Content-Type: application/json" \
-     -d '{"name": "calebt@example.org", "password": "mypass", "roles": ["calebt@example.org", "verified", "userdb-b1284cd5a340420a87858bc58da1c252", "exp-4102444799"], "type": "user"}'
+     -d '{"name": "calebt@example.org", "password": "mypass", "roles": ["calebt@example.org", "verified" "exp-4102444799"], "type": "user"}'
 ```
-
-Create database:
-```
-curl -X PUT http://admin:mypassword@127.0.0.1:5984/userdb-b1284cd5a340420a87858bc58da1c252
-```
-
-Make user an admin of this db:
-```
-curl -X PUT http://admin:mypassword@localhost:5984/userdb-b1284cd5a340420a87858bc58da1c252/_security \
-     -H "Content-Type: application/json" \
-     -d '{"admins": { "names": ["calebt@example.org"], "roles": [] }, "members": { "names": [], "roles": [] } }'
-```
-
-
 
 In db.js, change https:// to http

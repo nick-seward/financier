@@ -90,6 +90,7 @@
     "angular-translate": "^2.13.0",
     "angular-ui-router": "^0.4.1",
     "angular-vs-repeat": "^1.1.7",
+    "binstring": "^0.2.1",
     "chart.js": "^2.2.1",
     "express-http-proxy": "^1.0.7",
     "fastclick": "^1.0.6",
@@ -107,8 +108,10 @@
     "papaparse": "^4.1.2",
     "pouchdb": "^6.0.7",
     "pouchdb-core": "^6.0.7",
+    "readline-sync": "^1.4.7",
     "sortablejs": "^1.4.0",
     "st-multi-sort": "^1.0.2",
+    "sync-request": "^4.1.0",
     "tether-drop": "^1.4.2"
   }
 }
