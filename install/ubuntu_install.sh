@@ -23,7 +23,7 @@ npm install
 node ./install/setup_couchdb.js
 
 # Build
-npm run Build
+npm run build
 
 ip=$(ip -f inet -o addr show eth0|cut -d\  -f 7 | cut -d/ -f 1)
 
@@ -35,6 +35,7 @@ echo "Financier is now installed.  To start, run the following:"
 echo "node ./api"
 echo ""
 echo "and then go to http://$ip in your browser and log in with the user account you created earlier"
+echo ""
 
 # Start app
 #node ./api
